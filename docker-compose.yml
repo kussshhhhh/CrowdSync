@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  api:
+    build: 
+      context: ./api
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    depends_on:
+      - cpp_engine
+
+  cpp_engine:
+    build:
+      context: ./cpp_engine
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
